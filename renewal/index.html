@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>강원특별자치도 원주의료원</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+  /* ===== 공통 ===== */
+  :root {
+    --navy: #2f4a7a;
+    --navy-dark: #140f5a;
+    --red: #e60012;
+    --line: #aac4f0;
+    --gray-bg: #e6e6e6;
+    --text: #222;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Pretendard", "Malgun Gothic", sans-serif; color: var(--text); background: #fff; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+  .inner { max-width: 1080px; margin: 0 auto; padding: 0 15px; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* ===== 헤더 ===== */
+  header .inner { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+  .logo { display: flex; align-items: center; gap: 6px; width: 298px; height: 99px; }
+  .logo strong { display: block; color: var(--navy); font-size: 15px; font-weight: 800; }
+  .logo span { display: block; color: var(--navy); font-size: 8px; font-weight: 700; }
+  .gnb {display: flex; width: 1101px; height:40px; /*padding: 0 0 15px 15px;*/ align-items: flex-start; gap: 58px; border-bottom: 2px solid #9AA6BD;
+background: rgba(217, 217, 217, 0.00);}
+  .gnb a { font-size: 20px; font-weight: 700; }
+  .gnb a:hover { color: var(--navy); }
+
+  /* ===== 메인 비주얼 ===== */
+  .picture{
+    display: flex; justify-content: center; }
+  .visual {
+    height: 252px;
+    width: 1440px;
+    background:      
+      linear-gradient(90deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,.6) 45%, rgba(255,255,255,0) 70%),
+      url("img/back.png") center/cover no-repeat, #9aa7b8;
+    display: flex; flex-direction: column; justify-content: center; padding-left: 37px;
+  }
+  .visual h2 { font-size: 26px; font-weight: 600; margin-bottom: 18px; }
+  .visual p { font-size: 22px; }
+
+  /* ===== 퀵메뉴 4칸 ===== */
+  .quick { display: grid; grid-template-columns: repeat(4, 1fr); margin: 22px 0 50px; }
+  .quick-item {
+    padding: 20px 10px 0; display: flex; flex-direction: column;
+    border-right: 3px solid var(--line); min-height: 310px;
+  }
+  .quick-item:last-child { border-right: 0; }
+  .quick-item h3 { text-align: center; font-size: 26px; margin: 30px 0 25px; }
+  .quick-item p { font-size: 16px; line-height: 1.7; padding: 0 12px; }
+  .quick-item .tel { font-size: 32px; font-weight: 800; margin: 18px 0 10px; }
+  .quick-item .small { font-size: 13px; line-height: 2.2; }
+  .quick-item .btn {
+    margin-top: auto; height: 55px; border: 0; border-radius: 14px;
+    background: var(--navy); color: #fff; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .quick-item.phone h3 { margin-top: 5px; margin-bottom: 15px; }
+  .search-box { position: relative; margin: 30px 0 8px; }
+  .search-box input {
+    width: 100%; height: 52px; border: 0; border-radius: 14px;
+    background: #e4e4e4; padding: 0 50px 0 16px; font-size: 16px;
+  }
+  .search-box svg { position: absolute; right: 16px; top: 14px; }
+  .quick-item.search .btn { margin-top: 0; }
+
+  /* ===== 아이콘 메뉴 + 응급실 ===== */
+  .info { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 35px; }
+  .icon-menu { display: grid; grid-template-columns: repeat(3, 1fr); row-gap: 20px; padding: 10px 0; }
+  .icon-menu a { text-align: center; font-size: 19px; font-weight: 600; color: #333; }
+  .icon-menu .circle {
+    width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 56px;
+  }
+  .c1 { width: 212px; height: 233px; flex-shrink: 0; aspect-ratio: 101/111;; background: url(<path-to-image>) lightgray 50% / cover no-repeat; } 
+  .c2 { width: 223px; height: 233px; flex-shrink: 0; aspect-ratio: 67/70; background: url(<path-to-image>) lightgray 50% / cover no-repeat; } .c3 { background: #fbd9dd; }
+  .c4 { background: #e3e0fb; } .c5 { background: #d6ecf7; } .c6 { background: #e2e2e2; }
+
+  .emergency {
+    border-top: 4px solid var(--red); border-bottom: 4px solid var(--red);
+    display: flex; align-items: center; padding: 15px 28px; gap: 50px;
+  }
+  .emergency .title { display: flex; align-items: center; gap: 12px; font-size: 28px; font-weight: 700; }
+  .cross {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--red); position: relative;
+  }
+  .cross::before, .cross::after {
+    content: ""; position: absolute; background: #fff; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  }
+  .cross::before { width: 26px; height: 9px; }
+  .cross::after  { width: 9px; height: 26px; }
+  .emergency .detail { font-size: 28px; font-weight: 700; line-height: 1.8; }
+  .hours {
+    margin-top: 20px; border-top: 4px solid var(--navy); border-bottom: 4px solid var(--navy);
+    padding: 20px 32px;
+  }
+  .hours dl { display: grid; grid-template-columns: 170px 1fr; row-gap: 22px; align-items: center; }
+  .hours dt { font-size: 23px; font-weight: 700; text-align: center; }
+  .hours dd { font-size: 22px; font-weight: 600; line-height: 1.5; }
+
+  /* ===== 배너 슬라이더 ===== */
+  .slider { position: relative; height: 530px; background: var(--navy-dark); overflow: hidden; }
+  .slides { display: flex; height: 100%; transition: transform .5s ease; }
+  .slide {
+    flex: 0 0 100%; display: flex; align-items: center; justify-content: center; gap: 40px; color: #fff;
+  }
+  .slide .badge {
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, #fff 55%, #1c3f8f 56%, #1c3f8f 68%, #e9b949 69%);
+    display: flex; align-items: center; justify-content: center;
+    color: #1c3f8f; font-size: 44px; font-weight: 900; font-style: italic;
+  }
+  .slide small { font-size: 18px; color: #f0d98c; }
+  .slide h3 { font-size: 42px; font-weight: 900; color: #f3e3b0; margin: 6px 0; }
+  .slide p { font-size: 16px; color: #f0d98c; }
+  .dots { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+  .dots button { width: 20px; height: 20px; border-radius: 10px; border: 0; background: #ddd; transition: width .3s; }
+  .dots button.active { width: 42px; background: #ffeb00; }
+
+  /* ===== 소식 ===== */
+  .news { padding: 35px 0 40px; background: #f4f6fa; }
+  .news h2 { text-align: center; font-size: 32px; }
+  .news .desc { text-align: center; font-size: 15px; margin: 30px 0 10px; }
+  .tabs { display: flex; justify-content: center; margin-bottom: 35px; }
+  .tabs button {
+    width: 80px; height: 44px; border: 1px solid #ddd; background: #fff; font-size: 15px;
+    box-shadow: 0 2px 3px rgba(0,0,0,.15);
+  }
+  .tabs button.active { background: #555; color: #fff; font-weight: 700; }
+  .news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 15px; }
+  .news-card {
+    position: relative; background: #fff; min-height: 190px; padding: 40px 25px 15px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,.25); display: flex; flex-direction: column;
+  }
+  .news-card .tit { font-size: 24px; line-height: 1.6; }
+  .news-card .date { margin-top: auto; text-align: right; font-size: 20px; }
+  .news-card .new {
+    position: absolute; top: 8px; right: 10px; width: 24px; height: 24px; border-radius: 50%;
+    background: #fff; border: 2px solid #f39800; color: #f39800;
+    font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center;
+  }
+  .news-card.hide { display: none; }
+
+  /* ===== 푸터 ===== */
+  footer { background: var(--gray-bg); padding: 30px 0 45px; }
+  footer .inner { display: flex; gap: 35px; }
+  footer .logo { align-self: center; flex-shrink: 0; }
+  .f-links { display: flex; gap: 55px; margin-bottom: 25px; }
+  .f-links a { font-size: 15px; font-weight: 700; }
+  .f-info { font-size: 13px; line-height: 1.75; color: #333; }
+
+  /* ===== 반응형 ===== */
+  @media (max-width: 900px) {
+    header .inner { flex-direction: column; height: auto; padding: 15px; gap: 10px; }
+    .gnb { flex-wrap: wrap; gap: 15px; justify-content: center; }
+    .gnb a { font-size: 16px; }
+    .quick { grid-template-columns: 1fr 1fr; row-gap: 30px; }
+    .quick-item:nth-child(2) { border-right: 0; }
+    .info { grid-template-columns: 1fr; }
+    .slide { flex-direction: column; gap: 20px; text-align: center; }
+    .slide h3 { font-size: 26px; }
+    .news-list { grid-template-columns: 1fr 1fr; }
+    footer .inner { flex-direction: column; }
+    .f-links { flex-wrap: wrap; gap: 15px; }
+  }
+  @media (max-width: 560px) {
+    .quick, .news-list { grid-template-columns: 1fr; }
+    .quick-item { border-right: 0; border-bottom: 3px solid var(--line); padding-bottom: 20px; min-height: 0; }
+    .icon-menu .circle { width: 90px; height: 90px; font-size: 40px; }
+    .emergency { flex-direction: column; gap: 10px; }
+    .tabs button { width: 16%; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 헤더 -->
+<header>
+  <div class="inner">
+    <a href="#" class="logo">
+      <div class="logo-mark"></div><img src="img/logo1.png">
+    </a>
+    <nav class="gnb">
+      <a href="reserve.html">진료•예약</a>
+      <a href="#">병원 이용 안내</a>
+      <a href="#">전문센터</a>
+      <a href="#">공공의료</a>
+      <a href="#">참여•알림마당</a>
+      <a href="#">병원소개</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 메인 비주얼 -->
+<div class = picture>
+<section class="visual">
+  <h2>정성을 담은 진료, 지역과 함께하는 병원</h2>
+  <p>강원특별자치도 원주의료원</p>
+</section>
+</div>
+
+<main class="inner">
+  <!-- 퀵메뉴 -->
+  <section class="quick">
+    <div class="quick-item">
+      <h3>진료예약</h3>
+      <p>온라인으로 쉽고 빠르게 간편 진료예약을 해보세요.</p>
+      <a href="reserve.html" class="btn">예약하기</a>
+    </div>
+    <div class="quick-item">
+      <h3>예약조회 • 변경</h3>
+      <p>예약하신 진료 정보를 확인하세요.</p>
+      <a href="#" class="btn">예약조회</a>
+    </div>
+    <div class="quick-item phone">
+      <h3>전화로 예약하기</h3>
+      <p class="small">1회 이상 진료받으신 환자분만<br>전화예약이 가능합니다.</p>
+      <p class="tel">033-760-4653</p>
+      <p class="small">상담시간 평일 08:30 ~ 17:30<br>※ 주말 및 공휴일은 운영하지 않습니다.</p>
+      <a href="tel:0337604653" class="btn">전화걸기</a>
+    </div>
+    <div class="quick-item search">
+      <h3>의료진 찾기</h3>
+      <p>진료과 및 의료진, 질환명을<br>검색해 보세요.</p>
+      <div class="search-box">
+        <input type="text" aria-label="의료진 검색">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.8">
+          <circle cx="10.5" cy="10.5" r="7.5"/><path d="M16 16l6 6"/>
+        </svg>
+      </div>
+      <button class="btn">검색</button>
+    </div>
+  </section>
+
+  <!-- 아이콘 메뉴 + 응급실 -->
+  <section class="info">
+    <div class="icon-menu">
+      <!-- 아이콘은 실제 이미지(<img>)로 교체하면 됩니다 -->
+      <a href="#"><div class="circle c1"><img src = img/01.png></div>찾아오시는 길</a>
+      <a href="#"><div class="circle c2"><img src = img/02.png></div>증명서 발급</a>
+      <a href="#"><div class="circle c3"><img src = img/03.png></div>휴진일정</a>
+      <a href="#"><div class="circle c4"><img src = img/04.png></div>건강검진센터</a>
+      <a href="#"><div class="circle c5"><img src = img/05.png></div>원내배치도</a>
+      <a href="#"><div class="circle c6"><img src = img/06.png></div>장례식장안내</a>
+    </div>
+    <div>
+      <div class="emergency">
+        <div class="title"><span class="cross"></span>응급실</div>
+        <div class="detail">24시간 접수 및 진료<br>033)760-4701~2</div>
+      </div>
+      <div class="hours">
+        <dl>
+          <dt>접수 및 진료</dt><dd>08:30~17:30</dd>
+          <dt>점심시간</dt><dd>12:30~13:30</dd>
+          <dt>접수마감</dt><dd>의료진 또는 병원의 사정에<br>따라 유동적</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 배너 슬라이더 -->
+<section class="inner">
+  <div class="slider">
+    <div class="slides">
+      <div class="slide"><img src = img/banner1.png ></div>
+      <div class="slide"><img src = img/banner2.png ></div>
+      <div class="slide"><img src = img/banner3.png ></div>
+      <div class="slide"><img src = img/banner4.png ></div>
+      <div class="slide"><img src = img/banner5.png ></div>
+    </div>
+    <div class="dots"></div>
+  </div>
+</section>
+
+<!-- 소식 -->
+<section class="news">
+  <div class="inner">
+    <h2>원주의료원 소식</h2>
+    <p class="desc">원주의료원의 소식 및 정보를 알려드립니다.</p>
+    <div class="tabs">
+      <button class="active" data-cat="all">전체</button>
+      <button data-cat="news">소식</button>
+      <button data-cat="kids">공공어린이</button>
+      <button data-cat="public">공공의료</button>
+      <button data-cat="job">채용</button>
+      <button data-cat="bid">입찰</button>
+    </div>
+    <ul class="news-list">
+      <li class="news-card" data-cat="news"><span class="new">N</span><a href="#" class="tit">원주의료원, 2026년 다같이 더 가치 환자 안전 캠페인 실시</a><span class="date">2026.09.22</span></li>
+      <li class="news-card" data-cat="public"><span class="new">N</span><a href="#" class="tit">[공공협력]원주권 보건의료인력 대상 교육지원사업(흥업요양원</a><span class="date">2026.09.21</span></li>
+      <li class="news-card" data-cat="job"><span class="new">N</span><a href="#" class="tit">신규직원 채용공고(기간제근로자_간호사)</a><span class="date">2026.09.18</span></li>
+      <li class="news-card" data-cat="job"><span class="new">N</span><a href="#" class="tit">신규직원 채용공고(공무직_조리원)</a><span class="date">2026.09.18</span></li>
+      <li class="news-card" data-cat="public"><span class="new">N</span><a href="#" class="tit">[공공협력]원주권 보건의료인력 대상 교육지원사업(무실초등학교)</a><span class="date">2026.09.16</span></li>
+      <li class="news-card" data-cat="news"><span class="new">N</span><a href="#" class="tit">원주의료원, 캐나다 알버타주 보건부 장관 견학 방문</a><span class="date">2026.09.10</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 푸터 -->
+<footer>
+  <div class="inner">
+    <a href="#" class="logo">
+      <div class="logo-mark"><img src = img/logo1.png></div>
+    </a>
+    <div>
+      <div class="f-links">
+        <a href="#">개인정보처리방침</a>
+        <a href="#">고정형 영상정보처리기기 운영•관리방침</a>
+        <a href="#">고객 현장 및 서비스이행표준</a>
+      </div>
+      <address class="f-info" style="font-style:normal">
+        강원특별자치도원주의료원<br>
+        26448 강원도 원주시 서원대로 387(개운동)/T.033-790-4500/F.033-761-5121/E.<br>
+        본 홈페이지에 게시된 이메일 주소가 자동 수집되는 것을 거부하며, 이를 위반시 정보통신망법에 의해 처벌됨을 유념하시기 바랍니다.<br>
+        Copyright© 2026 by 강원특별자치도원주의료원 All Rights Reserved.
+      </address>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== 배너 슬라이더 =====
+  const slides = document.querySelector('.slides');
+  const count = slides.children.length;
+  const dotsWrap = document.querySelector('.dots');
+  let current = 0;
+
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement('button');
+    dot.setAttribute('aria-label', `${i + 1}번 배너`);
+    dot.addEventListener('click', () => { goTo(i); resetTimer(); });
+    dotsWrap.appendChild(dot);
+  }
+  function goTo(i) {
+    current = i;
+    slides.style.transform = `translateX(-${i * 100}%)`;
+    dotsWrap.querySelectorAll('button').forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+  let timer = setInterval(() => goTo((current + 1) % count), 4000);
+  function resetTimer() { clearInterval(timer); timer = setInterval(() => goTo((current + 1) % count), 4000); }
+  goTo(0);
+
+  // ===== 소식 탭 필터 =====
+  document.querySelectorAll('.tabs button').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tabs button').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.cat;
+      document.querySelectorAll('.news-card').forEach(card => {
+        card.classList.toggle('hide', cat !== 'all' && card.dataset.cat !== cat);
+      });
+    });
+  });
+</script>
+</body>
+</html>
